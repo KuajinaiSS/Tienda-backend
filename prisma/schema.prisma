@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  UUID        String    @id @default(uuid())
+  name        String
+  discount    Float     @default(0)
+  description String
+  imageURL    String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+  deletedAt   DateTime?
+  products    Product[] // Relacion 1:N con Productos
+}
+
+model Product {
+  UUID        String    @id @default(uuid())
+  name        String
+  price       Float
+  discount    Float     @default(0)
+  description String
+  image       String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+  deletedAt   DateTime?
+
+  categoryUUID String
+  category     Category @relation(fields: [categoryUUID], references: [UUID])
+}
+
+model Role {
+  UUID      String    @id @default(uuid())
+  name      String
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  deletedAt DateTime?
+  users     User[]
+}
+
+model User {
+  UUID             String    @id @default(uuid())
+  email            String
+  password         Float?
+  name             String
+  dni              String
+  phone_number     String?
+  total_purchases  Float?    @default(0)
+  current_purchase Float?    @default(0)
+  isActive         Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime? @updatedAt
+  deletedAt        DateTime?
+
+  roleUUID String
+  role     Role   @relation(fields: [roleUUID], references: [UUID])
+}
