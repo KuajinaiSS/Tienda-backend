@@ -1,6 +1,6 @@
 // import { PartialType } from '@nestjs/mapped-types';
 
-import { Product } from 'generated/prisma';
+import { Product } from '@prisma/client';
 
 export type UpdateProductDto = Omit<
   Product,

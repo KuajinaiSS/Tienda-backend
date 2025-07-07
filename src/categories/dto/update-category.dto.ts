@@ -1,6 +1,6 @@
 // import { PartialType } from '@nestjs/mapped-types';
 
-import { Category } from 'generated/prisma';
+import { Category } from '@prisma/client';
 
 export type UpdateCategoryDto = Omit<
   Category,
