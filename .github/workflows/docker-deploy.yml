@@ -19,6 +19,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          
 
       # Paso 3: Configurar Docker Buildx
       - name: Set up Docker Buildx
@@ -30,6 +31,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: kuajinaiss/backend-taller3:latest
+          tags: kuajinaiss/shop-project-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
