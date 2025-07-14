@@ -31,6 +31,18 @@
 $ pnpm install
 ```
 
+```bash
+$ copy .env.example .env
+```
+
+```bash
+$ npx prisma generate
+```
+
+```bash
+$ pnpm prisma migrate dev
+```
+
 ## Compile and run the project
 
 ```bash
